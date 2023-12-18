@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:food_panda/products.dart';
 import 'package:http/http.dart' as http;
 
+import 'view/home/home.dart';
+import 'view/home/widget/drawer.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -43,6 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
        // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         backgroundColor: Colors.pinkAccent,
@@ -53,98 +57,28 @@ class _MyHomePageState extends State<MyHomePage> {
           SizedBox(width: 10,),
         ],
         title: const ListTile(
-          title: Text('2 st 562',style: TextStyle(fontWeight: FontWeight.w600), ) ,
-          subtitle: Text('Phnom Penh'),
+          title: Text('2 st 562',
+            style: TextStyle(fontWeight: FontWeight.w600,color: Colors.white),
+
+          ) ,
+          subtitle: Text('Phnom Penh',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
+        leadingWidth: 35,
+
 
       ),
-      body:  CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            automaticallyImplyLeading: false,
-            pinned: false,
-            snap: false,
-            floating: false,
-            expandedHeight: 60,
-            flexibleSpace: FlexibleSpaceBar(
-              background:Container(
-                padding: const EdgeInsets.only(left: 10,right: 10,bottom: 15,top: 0),
-                color: Colors.pinkAccent,
-                child: Container(
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Colors.white,
-                  ),
-                  child: const Row(
-                    children: [
-                      SizedBox(width: 10,),
-                      Icon(Icons.search),
-                      SizedBox(width: 10,),
-                      Text('Search & Shop Restaurant'),
-                    ],
-                  ),
-                ),
-              ) ,
+      body:  myHome(),
 
-            ),
-          )
-        ],
-
-      ),
-
-      drawer: Drawer(
-        width: MediaQuery.of(context).size.width*.85,
-        child:  ListView(
-          children: <Widget>[
-            UserAccountsDrawerHeader(
-                accountName: const Text('Khoeun Sreypich'),
-
-              accountEmail:Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text('Personal Account'),
-
-                  Padding(
-                     padding: const EdgeInsets.only(right: 10),
-
-                    child: ElevatedButton(
-                        onPressed: (){},
-                        child:const Text('Switch')
-                    ),
-                  ),
-                ],
-              ),
-              currentAccountPicture: ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Image.network('https://iv1.lisimg.com/image/21450866/740full-dasha-taran-(ii).jpg',
-                    fit: BoxFit.fill,
-                  )),
-              currentAccountPictureSize:const Size.square(50),
-
-            ),
-             const ListTile(
-                 title:  Text('Call'),
-                 leading: Icon(Icons.call_outlined),
-             ),
-            const ListTile(
-                title:  Text('Saved Message'),
-              leading: Icon(Icons.save_alt_outlined),
-                    
-            ),
-            const ListTile(
-                title:  Text('option 1'),
-              leading: Icon(Icons.add),
-            ),
-            const ListTile(
-                title:  Text('option 1'),
-              leading: Icon(Icons.contact_emergency),
-            ),
-          ],
-
-        ),
+      drawer: SafeArea(
+        child: myDrawer(),
       ),
 
     );
   }
 }
+
+
+
+
