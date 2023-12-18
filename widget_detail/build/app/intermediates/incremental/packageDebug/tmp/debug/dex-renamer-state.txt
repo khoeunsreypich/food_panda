@@ -1,0 +1,4 @@
+#Sat Dec 09 16:12:05 ICT 2023
+base.0=C\:\\Users\\USER\\AndroidStudioProjects\\food_panda\\widget_detail\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
