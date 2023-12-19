@@ -1,8 +1,4 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:food_panda/products.dart';
-import 'package:http/http.dart' as http;
-
 import 'view/home/home.dart';
 import 'view/home/widget/drawer.dart';
 
@@ -20,12 +16,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.pinkAccent),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title:''),
-
+      home: const MyHomePage(title: ''),
     );
   }
 }
@@ -40,45 +34,39 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
-       // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         backgroundColor: Colors.pinkAccent,
         actions: const [
           Icon(Icons.favorite_outline),
-          SizedBox(width: 10,),
+          SizedBox(
+            width: 10,
+          ),
           Icon(Icons.shopping_basket_outlined),
-          SizedBox(width: 10,),
+          SizedBox(
+            width: 10,
+          ),
         ],
         title: const ListTile(
-          title: Text('2 st 562',
-            style: TextStyle(fontWeight: FontWeight.w600,color: Colors.white),
-
-          ) ,
-          subtitle: Text('Phnom Penh',
+          title: Text(
+            '2 st 562',
+            style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
+          ),
+          subtitle: Text(
+            'Phnom Penh',
             style: TextStyle(color: Colors.white),
           ),
         ),
         leadingWidth: 35,
-
-
       ),
-      body:  myHome(),
-
+      body: myHome(),
       drawer: SafeArea(
         child: myDrawer(),
       ),
-
     );
   }
 }
-
-
-
-

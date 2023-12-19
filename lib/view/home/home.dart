@@ -62,8 +62,8 @@ class myHome extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 12, top: 12),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 12, top: 12),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -107,16 +107,16 @@ class myHome extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                               'Shop',
                               style: TextStyle(
                                   fontSize: 25, fontWeight: FontWeight.bold),
                             ),
-                            Text('Groseris and more'),
+                            const Text('Groseris and more'),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                             mainAxisSize: MainAxisSize.max,
-                             // crossAxisAlignment: CrossAxisAlignment.end,
+                              mainAxisSize: MainAxisSize.max,
+                              // crossAxisAlignment: CrossAxisAlignment.end,
                               verticalDirection: VerticalDirection.up,
                               children: [
                                 SizedBox(
@@ -133,19 +133,79 @@ class myHome extends StatelessWidget {
                   ),
                   Expanded(
                     child: Container(
-                      // color: Colors.pinkAccent,
                       child: Column(
                         children: [
                           Expanded(
                             flex: 4,
                             child: Container(
-                              color: Colors.pinkAccent,
+                              decoration: boxDecoration,
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Pick-up',
+                                      style: TextStyle(
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text('Up to 50% off'),
+                                    Column(
+                                      verticalDirection: VerticalDirection.up,
+                                      children: [
+                                        SizedBox(
+                                          width: 160,
+                                          height: 120,
+                                          child: Image.network(
+                                              'https://images.deliveryhero.io/image/foodpanda/homepage/refresh-hero-home-kh.png'),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
                           Expanded(
                             flex: 2,
                             child: Container(
-                              color: Colors.purple,
+                              decoration: boxDecoration,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Pandasend',
+                                            style: TextStyle(
+                                                fontSize: 25,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Text('Express'),
+                                          Text('Delivery'),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Column(
+                                              children: [
+                                                SizedBox(
+                                                  width: 30,
+                                                  height: 30,
+                                                  child: Image.network(
+                                                      'https://images.deliveryhero.io/image/foodpanda/homepage/refresh-hero-home-kh.png'),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ]),
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
                         ],
