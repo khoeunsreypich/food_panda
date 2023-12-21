@@ -101,6 +101,7 @@ class myHome extends StatelessWidget {
               height: 300,
               //width: double.infinity,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
                     child: Container(
@@ -117,10 +118,6 @@ class myHome extends StatelessWidget {
                             ),
                             const Text('Groseris and more'),
                             Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              mainAxisSize: MainAxisSize.max,
-                              // crossAxisAlignment: CrossAxisAlignment.end,
-                              verticalDirection: VerticalDirection.up,
                               children: [
                                 SizedBox(
                                     width: 150,
@@ -183,7 +180,7 @@ class myHome extends StatelessWidget {
                           Expanded(
                             flex: 2,
                             child: Padding(
-                              padding: const EdgeInsets.only(left: 5, top: 8),
+                              padding: const EdgeInsets.only(left: 12, top: 8),
                               child: Container(
                                 decoration: boxDecoration,
                                 child: Column(
@@ -197,23 +194,35 @@ class myHome extends StatelessWidget {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              const Text(
-                                                'Pandasend',
-                                                style: TextStyle(
-                                                    fontSize: 25,
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                              const Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 12),
+                                                child: Text(
+                                                  'Pandasend',
+                                                  style: TextStyle(
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
                                               ),
-                                              const Text('Express'),
+                                              const Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 12),
+                                                child: Text('Express'),
+                                              ),
                                               //const Text('Delivery'),
                                               Row(
                                                 children: [
-                                                  const Text('Delivery'),
+                                                  const Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 12),
+                                                    child: Text('Delivery'),
+                                                  ),
                                                   Column(
                                                     children: [
                                                       SizedBox(
-                                                        width: 125,
-                                                        height: 35.5,
+                                                        width: 115,
+                                                        height: 40.5,
                                                         child: Align(
                                                           alignment: Alignment
                                                               .bottomRight,
