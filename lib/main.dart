@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_panda/view/business_owner/add_restaurant.dart';
 import 'view/home.dart';
 import 'view/home/widget/drawer.dart';
 
@@ -37,15 +38,19 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
         // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         backgroundColor: Colors.pinkAccent,
-        actions: const [
-          Icon(Icons.favorite_outline),
-          SizedBox(
-            width: 10,
+        actions:  [
+          IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => AddRestuarant()));
+            },
+            icon: const Icon(Icons.favorite_outline),
           ),
+
           Icon(Icons.shopping_basket_outlined),
           SizedBox(
             width: 10,

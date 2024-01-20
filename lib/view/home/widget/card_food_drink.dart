@@ -1,66 +1,94 @@
 import 'package:flutter/material.dart';
+import 'package:food_panda/models/restaurant.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
-class CardFoodDrink extends StatelessWidget {
-  const CardFoodDrink({
-    super.key,
-  });
+class CardFoodDrink extends StatefulWidget {
+
+  // const CardFoodDrink({
+  //   Key? key,
+  // }) : super(key: key);
+  CardFoodDrink({super.key,
+    this.restaurant
+});
+Datum? restaurant;
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 350,
-      width: MediaQuery.of(context).size.width * .75,
-      child: Column(
-        children: [
-          Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 8,right: 8,top: 8),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Image.network(
-                      'https://d1ralsognjng37.cloudfront.net/a96aeaae-f23e-4ae4-b885-a41ad288c0ea.jpeg'),
-                ),
-              ),
-              const Positioned(
-               bottom: 15,
-                left: 10,
-                child: Text(
-                  '20% OFF ',
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                      backgroundColor: Colors.pink),
-                ),
-              ),
-              const Positioned(
-                top: 15,
-                left: 10,
-                child: Text(
-                  'Free Delivery ',
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                      backgroundColor: Colors.pink),
-                ),
-              ),
-            ],
-          ),
+  State<CardFoodDrink> createState() => _CardFoodDrinkState();
+}
 
-          Padding(
-            padding: const EdgeInsets.only(right: 159,top: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Tube Coffee',style: TextStyle(fontWeight: FontWeight.bold),),
-                Text('\$\$\$ Coffee',style: TextStyle(fontWeight: FontWeight.bold)),
-                Text('\$ 0.75 delivery fee',style: TextStyle(fontWeight: FontWeight.bold,)),
-              ],
+class _CardFoodDrinkState extends State<CardFoodDrink> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 15, top: 10, bottom: 10),
+      child: Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Stack(children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: Container(
+                  height: 210,
+                  width: MediaQuery.of(context).size.width*.75,
+                  child: Image.network(
+                    'https://cms.istad.co${widget.restaurant!.attributes?.picture!.data!.attributes!.url!}',
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 15,
+                child: Container(
+                  alignment: Alignment.center,
+                  width: 40,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    // /color: Colors.red,
+                      borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(5),
+                          topRight: Radius.circular(5))),
+                  child: Text(
+                    '15%',
+                    style: TextStyle(color: Colors.white, fontSize: 17,backgroundColor: Colors.red),
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 10,
+                left: 10,
+                child: Container(
+                  alignment: Alignment.center,
+                  width: 60,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    // color: Colors.red,
+                      borderRadius: BorderRadius.all(Radius.circular(5))),
+                  child: Text(
+                    '25mn',
+                    style: TextStyle(fontSize: 17, color: Colors.white,backgroundColor: Colors.red),
+                  ),
+                ),
+              )
+            ]),
+            SizedBox(
+              height: 5,
             ),
-          )
-        ],
+            Text(
+              widget.restaurant!.attributes!.name.toString(),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Text('\$\$\$ ${widget.restaurant!.attributes?.category}'),
+            SizedBox(
+              height: 3,
+            ),
+            Text('\$ ${widget.restaurant?.attributes?.deliveryFee} delivery fee')
+          ],
+        ),
       ),
     );
   }

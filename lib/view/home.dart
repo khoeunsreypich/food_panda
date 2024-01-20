@@ -1,17 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:food_panda/data/response/status.dart';
+import 'package:food_panda/viewmodels/restaurant_vm.dart';
+import 'package:provider/provider.dart';
 
+import 'home/skeletons/restaurant_ske.dart';
 import 'home/widget/card_food_drink.dart';
 
 
 
-class myHome extends StatelessWidget {
+class myHome extends StatefulWidget {
   myHome({
     super.key,
   });
+
+  @override
+  State<myHome> createState() => _myHomeState();
+}
+
+class _myHomeState extends State<myHome> {
   var boxDecoration = BoxDecoration(
     color: Colors.white,
     borderRadius: BorderRadius.circular(15),
   );
+  var _restaurantViewModel = RestaurantViewModel();
+  @override
+  void initState(){
+    super.initState();
+    _restaurantViewModel.getAllRestaurant();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -276,13 +292,29 @@ class myHome extends StatelessWidget {
         SliverToBoxAdapter(
           child: Container(
             height: 350,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-                itemCount: 10,
-                itemBuilder: (BuildContext context, int index) {
-                  return CardFoodDrink();
+            child: ChangeNotifierProvider(
+              create: (context) => _restaurantViewModel,
+              child: Consumer<RestaurantViewModel>(
+                builder: (context, viewModel, _) {
+                  switch(viewModel.response.status) {
+                    case Status.LOADING:
+                      return CircularProgressIndicator();
+                    case Status.COMPLETED:
+                      return ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 10,
+                        itemBuilder: (BuildContext context, int index) {
+                          var restaurant = viewModel.response.data!.data![index];
+                          return CardFoodDrink(restaurant: restaurant,);
+                        },
+
+                      );
+                    case Status.ERROR:
+                      return Text('Error');
+                  }
                 },
-                ),
+              ),
+            )
           ),
         ),
       ],
