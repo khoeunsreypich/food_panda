@@ -7,6 +7,23 @@ import 'package:http/http.dart ' as http;
 class ApiService {
   dynamic responseJson;
 
+  Future<dynamic> postRestaurant(url,data) async{
+    var headers = {
+      'Content-Type': 'application/json'
+    };
+    var request = http.Request('POST', Uri.parse(url));
+    request.body = json.encode(data);
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+    }
+    else {
+      print(response.reasonPhrase);
+    }
+  }
 
 
   Future<dynamic> uploadImage(image,url) async{
@@ -45,25 +62,3 @@ class ApiService {
   }
 }
 
-//
-//     try {
-//
-//        var response = await http.get(Uri.parse(url));
-//        responseJson = returnResponse(response);
-//     } on SocketException {
-//       throw FetchDataException('No internet connection');
-//     }
-//     return responseJson;
-//   }
-// }
-//
-// dynamic returnResponse(http.Response response) {
-//   switch (response.statusCode){
-//     case 200 :
-//       return jsonDecode(response.body);
-//     case 500 :
-//       throw BadRequestException('Please check your request body');
-//   }
-//
-//
-// }

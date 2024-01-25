@@ -6,7 +6,7 @@ import 'package:http/http.dart%20';
 import '../models/restaurant.dart';
 
 class RestaurantViewModel extends ChangeNotifier{
-  var _restaurantRepo = RestaurantRepository();
+  final _restaurantRepo = RestaurantRepository();
   ApiResponse<Restaurant> response = ApiResponse.loading();
   setRestaurantList(response){
     this.response=response;
@@ -18,4 +18,10 @@ Future<dynamic> getAllRestaurant() async{
     setRestaurantList(ApiResponse.completed(restaurant))).onError((error, stackTrace) =>
     setRestaurantList((ApiResponse.error(stackTrace.toString()))));
 }
+
+Future<dynamic> postRestaurant(data) async{
+    await _restaurantRepo.postRestaurant(data).then((value) => setRestaurantList(ApiResponse.completed(value)))
+        .onError((error, stackTrace) => setRestaurantList(ApiResponse.error(stackTrace.toString())));
+}
+
 }
