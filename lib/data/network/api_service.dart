@@ -7,6 +7,22 @@ import 'package:http/http.dart ' as http;
 class ApiService {
   dynamic responseJson;
 
+
+
+  Future<dynamic> uploadImage(image,url) async{
+    http.StreamedResponse? response;
+    try {
+      var request = http.MultipartRequest('POST', Uri.parse(url));
+      request.files.add(await http.MultipartFile.fromPath('files', image));
+      response = await request.send();
+      return returnResponse(response);
+    }on Exception{
+     //throw FetchDataException(response!.reasonPhrase);
+      throw FetchDataException(response!.reasonPhrase.toString());
+    }
+
+  }
+
   Future<dynamic> getApi(url) async {
     http.StreamedResponse? response;
     try {

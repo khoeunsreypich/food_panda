@@ -296,7 +296,7 @@ class _myHomeState extends State<myHome> {
               create: (context) => _restaurantViewModel,
               child: Consumer<RestaurantViewModel>(
                 builder: (context, viewModel, _) {
-                  switch(viewModel.response.status) {
+                  switch(viewModel.response.status!) {
                     case Status.LOADING:
                       return CircularProgressIndicator();
                     case Status.COMPLETED:
@@ -311,6 +311,8 @@ class _myHomeState extends State<myHome> {
                       );
                     case Status.ERROR:
                       return Text('Error');
+
+
                   }
                 },
               ),
